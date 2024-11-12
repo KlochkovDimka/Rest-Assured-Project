@@ -11,7 +11,7 @@ public class MainTest {
     @Test
     public void authentication() {
         RestAssured.baseURI = "https://aqa-api.javacode.ru/api/auth/login";
-        UserAuthentication user = new UserAuthentication("klochkov_dmitriy", "\\lWX${6vY_VQ[Is");
+        UserAuthentication user = new UserAuthentication("klochkov_dmitriy", "\\|WX${6vY_VQ[Is");
 
         JSONObject userReg = new JSONObject();
         userReg.put("username", "klochkov_dmitriy");
@@ -19,9 +19,9 @@ public class MainTest {
 
         Response response = RestAssured
                 .given()
-                    .log().all()
-                    .header("Content/type", "application/json")
-                    .body(userReg.toString())
+                .log().all()
+                .header("Content/type", "application/json")
+                .body(userReg.toString())
                 .when().post();
 
         response.then()
