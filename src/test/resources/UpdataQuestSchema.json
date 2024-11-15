@@ -1,0 +1,214 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "properties": {
+    "data": {
+      "questionDB": {
+        "_id": {
+          "type": "integer"
+        },
+        "quizes": [],
+        "__names": [],
+        "name": {
+          "type": "string"
+        },
+        "contributors": [],
+        "decliners": [],
+        "hints": [],
+        "additionalQuestionsArr": [],
+        "useCases": [],
+        "videos": [],
+        "facts": [],
+        "interviews": [],
+        "hashTags": [],
+        "shortAnswers": [],
+        "detailedAnswers": [],
+        "cd": {
+          "type": "string"
+        },
+        "isDuplicated": {
+          "type": "boolean"
+        },
+        "useCasesLength": {
+          "type": "integer"
+        },
+        "factsLength": {
+          "type": "integer"
+        },
+        "answerProgressCount": {
+          "type": "integer"
+        },
+        "__v": {
+          "type": "integer"
+        },
+        "quizCount": {
+          "type": "integer"
+        },
+        "lockData": {
+          "startCd": {
+            "type": "integer"
+          },
+          "cd": {
+            "type": "integer"
+          },
+          "user": {
+            "type": "integer"
+          }
+        },
+        "jsDetails": {
+          "type": "string"
+        },
+        "comment": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
+        },
+        "answer": {
+          "type": "string"
+        },
+        "originalDuplicateId": {
+          "type": "string"
+        },
+        "owner": {
+          "grade": {
+            "type": "integer"
+          },
+          "user": {
+            "type": "integer"
+          },
+          "name": {
+            "type": "string"
+          },
+          "cd": {
+            "type": "integer"
+          }
+        },
+        "contributorsScore": {
+          "type": "integer"
+        }
+      },
+      "versionDB": {
+        "source": {
+          "type": "string"
+        },
+        "sourceId": {
+          "type": "string"
+        },
+        "suggests": [],
+        "approvers": [],
+        "decliners": [],
+        "contributors": [],
+        "prevApprovers": [],
+        "cd": {
+          "type": "string"
+        },
+        "_id": {
+          "type": "integer"
+        },
+        "approveScore": {
+          "type": "integer"
+        },
+        "version": {
+          "type": "integer"
+        },
+        "subVersion": {
+          "type": "integer"
+        },
+        "patch": {
+          "type": "integer"
+        },
+        "versionStr": {
+          "type": "string"
+        },
+        "versionSort": {
+          "type": "integer"
+        },
+        "name": {
+          "type": "string"
+        },
+        "dataStr": {
+          "type": "string"
+        },
+        "letters": {
+          "type": "string"
+        },
+        "versionStrUniq": {
+          "type": "string"
+        },
+        "__v": {
+          "type": "integer"
+        },
+        "data": {
+          "jsDetails": {
+            "type": "string"
+          },
+          "comment": {
+            "type": "string"
+          },
+          "quizes": [],
+          "hints": [],
+          "type": {
+            "type": "string"
+          },
+          "videos": [],
+          "name": {
+            "type": "string"
+          },
+          "hashTags": [],
+          "title": {
+            "type": "string"
+          },
+          "answer": {
+            "type": "string"
+          },
+          "facts": [],
+          "useCases": [],
+          "originalDuplicateId": {
+            "type": "string"
+          },
+          "questionId": {
+            "type": "string"
+          }
+        },
+        "isLTS": {
+          "type": "boolean"
+        },
+        "owner": {
+          "grade": {
+            "type": "integer"
+          },
+          "user": {
+            "type": "integer"
+          },
+          "name": {
+            "type": "string"
+          },
+          "cd": {
+            "type": "integer"
+          }
+        },
+        "firstOwner": {
+          "grade": {
+            "type": "integer"
+          },
+          "user": {
+            "type": "integer"
+          },
+          "name": {
+            "type": "string"
+          },
+          "cd": {
+            "type": "integer"
+          }
+        },
+        "contributorsScore": {
+          "type": "integer"
+        }
+      }
+    }
+  }
+}

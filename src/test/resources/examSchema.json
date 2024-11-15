@@ -1,0 +1,42 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "properties": {
+    "_id": {
+      "type": "integer"
+    },
+    "name": {
+      "type": "string"
+    },
+    "potQuizes": {
+      "type": "array"
+    },
+    "potQuestions": {
+      "type": "array"
+    },
+    "currentPotQuestions": {
+      "type": "array"
+    },
+    "user": {
+      "type": "integer"
+    },
+    "minutesStr": {
+      "type": "string"
+    },
+    "startArr": {
+      "type": "array"
+    },
+    "quizQuestionsPlain": {
+      "type": "array"
+    },
+    "quizQuestionsPlainPub": {
+      "type": "array"
+    },
+    "questions": {
+      "type": "array"
+    },
+    "cd": {
+      "type": "string"
+    }
+  }
+}

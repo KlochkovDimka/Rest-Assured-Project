@@ -1,0 +1,30 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "properties": {
+    "_id": {
+      "type": "integer"
+    },
+    "name": {
+      "type": "string"
+    },
+    "desc": {
+      "type": "string"
+    },
+    "user": {
+      "type": "integer"
+    },
+    "exams": {
+      "type": "array"
+    },
+    "sprints": {
+      "type": "array"
+    },
+    "courses": {
+      "type": "array"
+    },
+    "cd": {
+      "type": "string"
+    }
+  }
+}

@@ -1,0 +1,42 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "properties": {
+    "data": {
+      "_id": {
+        "type": "integer"
+      },
+      "quizes": [],
+      "__names": [],
+      "name": {
+        "type": "string"
+      },
+      "contributors": [],
+      "decliners": [],
+      "hints": [],
+      "additionalQuestionsArr": [],
+      "useCases": [],
+      "videos": [],
+      "facts": [],
+      "interviews": [],
+      "hashTags": [],
+      "shortAnswers": [],
+      "detailedAnswers": [],
+      "cd": {
+        "type": "string"
+      },
+      "isDuplicated": {
+        "type": "boolean"
+      },
+      "useCasesLength": {
+        "type": "integer"
+      },
+      "factsLength": {
+        "type": "integer"
+      },
+      "answerProgressCount": {
+        "type": "integer"
+      }
+    }
+  }
+}

@@ -1,9 +1,9 @@
-package org.example.dto;
+package org.example.dto.users;
 
 import lombok.AllArgsConstructor;
-import lombok.Getter;
+import lombok.Data;
 
-@Getter
+@Data
 @AllArgsConstructor
 public class UserAuthentication {
     private String username;
