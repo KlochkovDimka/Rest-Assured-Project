@@ -2,11 +2,12 @@
   "$schema": "http://json-schema.org/draft-07/schema#",
   "type": "object",
   "properties": {
-    "data": {
       "_id": {
         "type": "integer"
       },
-      "teams": [],
+      "teams": {
+        "type": "array"
+      },
       "surname": {
         "type": "string"
       },
@@ -16,15 +17,27 @@
       "username": {
         "type": "string"
       },
-      "roles": [],
-      "positions": [],
+      "roles": {
+        "type": "array"
+      },
+      "positions": {
+        "type": "array"
+      },
       "plain_password": {
         "type": "string"
       },
-      "cities": [],
-      "companies": [],
-      "work_history": [],
-      "edu_history": [],
+      "cities": {
+        "type": "array"
+      },
+      "companies": {
+        "type": "array"
+      },
+      "work_history":{
+        "type": "array"
+      },
+      "edu_history": {
+        "type": "array"
+      },
       "cd": {
         "type": "string"
       },
@@ -37,6 +50,5 @@
       "email": {
         "type": "string"
       }
-    }
   }
 }
