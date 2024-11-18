@@ -27,21 +27,21 @@ public class ConnectionMongodb {
 
     public Document findEntityBuId(String id) {
         mongoCollection = database.getCollection("users");
-        Document myDoc = mongoCollection.find(new Document("id", Integer.parseInt(id))).first();
+        Document myDoc = mongoCollection.find(new Document("_id", Integer.parseInt(id))).first();
         client.close();
         return myDoc;
     }
 
-    public Document findQuest(String id) {
+    public Document findQuest(Integer id) {
         mongoCollection = database.getCollection("themequestions");
-        Document document = mongoCollection.find(new Document("_id", Integer.parseInt(id))).first();
+        Document document = mongoCollection.find(new Document("_id", id)).first();
         client.close();
         return document;
     }
 
-    public Document findUpdateQuest(String id) {
+    public Document findUpdateQuest(Integer id) {
         mongoCollection = database.getCollection("themequestions");
-        Document document = mongoCollection.find(new Document("_id", Integer.parseInt(id))).first();
+        Document document = mongoCollection.find(new Document("_id", id)).first();
         client.close();
         return document;
     }

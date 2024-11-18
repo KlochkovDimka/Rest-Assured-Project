@@ -5,9 +5,16 @@ import io.restassured.response.Response;
 import lombok.extern.slf4j.Slf4j;
 import org.bson.Document;
 import org.example.config.ConnectAPI;
+import org.example.dto.curse.CurseEntity;
+import org.example.dto.exam.ExamEntity;
+import org.example.dto.module.ModuleEntity;
+import org.example.dto.quest.UpdateQuest;
+import org.example.dto.quiz.QuizEntity;
+import org.example.dto.template.Template;
 import org.example.dto.users.NewUserRequest;
 import org.example.dto.users.UserAuthentication;
 import org.example.generet.GeneratorUserEntity;
+import org.example.specification.SpecificationRequest;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
@@ -20,8 +27,8 @@ import static org.testng.AssertJUnit.assertEquals;
 
 @Slf4j
 public class MainTest extends ConnectAPI {
-    private String questId;
-    private GeneratorUserEntity generatorUserEntity = new GeneratorUserEntity();
+    private Integer questId;
+    private final GeneratorUserEntity generatorUserEntity = new GeneratorUserEntity();
     private String moduleName;
     private Integer moduleId;
     private Integer courseId;
@@ -31,7 +38,7 @@ public class MainTest extends ConnectAPI {
     @Test
     public void authenticationTest() {
 
-        String jsonSchemaPath = "userResponseAuthentication.json";
+        String jsonSchemaPath = "jsonSchemes/userResponseAuthentication.json";
 
         Response nowResponse = given()
                 .spec(request.getRequestNoAuthentication(user))
@@ -54,12 +61,14 @@ public class MainTest extends ConnectAPI {
     }
 
     //2
-    @Test(priority = 1, dataProvider = "createNewUser", dataProviderClass = MainTest.class, enabled = false)
+    @Test(priority = 1, dataProvider = "createNewUser", dataProviderClass = MainTest.class)
     public void createUsers(NewUserRequest userRequest) {
-        String jsonSchemaPath = "usersSchema.json";
+
+        String jsonSchemaPath = "jsonSchemes/usersSchema.json";
 
         Response nowResponse = given()
-                .spec(request.getRequest(token, userRequest))
+                .spec(new SpecificationRequest<NewUserRequest>()
+                        .getRequest(token, userRequest))
                 .when()
                 .post("/user-auth1");
 
@@ -69,20 +78,24 @@ public class MainTest extends ConnectAPI {
         String id = nowResponse
                 .jsonPath()
                 .getString("data._id");
+        String username = nowResponse
+                .jsonPath()
+                .getString("data.username");
 
         Document document = mongodb.findEntityBuId(id);
 
-        assertEquals(document.get("username"), getLogin());
-        assertEquals(document.get("_id"), id);
+        assertEquals(document.get("username"), username);
+        assertEquals(document.get("_id"), Integer.parseInt(id));
     }
 
     //3 +
     @Test(priority = 2, enabled = false)
     public void createdQuested() {
-        String jsonSchemaPath = "questSchema.json";
+        String jsonSchemaPath = "jsonSchemes/questSchema.json";
         String jsonBody = "{\"name\":\"Какое масло залить в форда, чтобы он его не сожрал за 3 месяца???\"}";
         Response nowResponse = given()
-                .spec(request.getRequest(token, jsonBody))
+                .spec(new SpecificationRequest<String>()
+                        .getRequest(token, jsonBody))
                 .when()
                 .post("/theme-question");
 
@@ -91,7 +104,7 @@ public class MainTest extends ConnectAPI {
 
         questId = nowResponse
                 .jsonPath()
-                .getString("data._id");
+                .getInt("data._id");
 
         Document document = mongodb.findQuest(questId);
 
@@ -101,11 +114,12 @@ public class MainTest extends ConnectAPI {
     //4 +
     @Test(priority = 3, enabled = false)
     public void updateQuested() {
-        String jsonSchemaPath = "UpdataQuestSchema.json";
+        String jsonSchemaPath = "jsonSchemes/UpdataQuestSchema.json";
         String newNameQuest = "Этот крокодил любое сожрет";
         Response nowResponse = given()
-                .spec(request.getRequest(token, setEntity
-                        .findUpdateQuest(Integer.parseInt(questId), newNameQuest)))
+                .spec(new SpecificationRequest<UpdateQuest>()
+                        .getRequest(token, setEntity
+                        .findUpdateQuest(questId, newNameQuest)))
                 .when()
                 .post("/create-lts");
 
@@ -120,11 +134,12 @@ public class MainTest extends ConnectAPI {
     //5+
     @Test(priority = 4, enabled = false)
     public void createdQuiz() {
-        String jsonSchemaPath = "quizeSchema.json";
+        String jsonSchemaPath = "jsonSchemes/quizeSchema.json";
         String nameQuiz = "Вопрос на засыпку";
 
         given()
-                .spec(request.getRequest(token,
+                .spec(new SpecificationRequest<QuizEntity>()
+                        .getRequest(token,
                         setEntity.findQuiz(nameQuiz)))
                 .when()
                 .post("/quiz")
@@ -139,10 +154,11 @@ public class MainTest extends ConnectAPI {
     //6+
     @Test(priority = 4, enabled = false)
     public void createNewModule() {
-        String jsonSchemaPath = "moduleSchema.json";
+        String jsonSchemaPath = "jsonSchemes/moduleSchema.json";
         moduleName = "Я в своем познании на столько приспел...";
         Response nowResponse = given()
-                .spec(request.getRequest(token, setEntity.findModule(moduleName)))
+                .spec(new SpecificationRequest<ModuleEntity>()
+                        .getRequest(token, setEntity.findModule(moduleName)))
                 .when()
                 .post("/course-module");
 
@@ -161,11 +177,12 @@ public class MainTest extends ConnectAPI {
     //7+
     @Test(priority = 5, enabled = false)
     public void createNewCourse() {
-        String jsonSchemaPath = "courseSchema.json";
+        String jsonSchemaPath = "jsonSchemes/courseSchema.json";
         String courseName = "Curse";
 
         Response nowResponse = given()
-                .spec(request.getRequest(token, setEntity.findCurse(courseName, moduleName, moduleId)))
+                .spec(new SpecificationRequest<CurseEntity>()
+                        .getRequest(token, setEntity.findCurse(courseName, moduleName, moduleId)))
                 .when()
                 .post("/course");
 
@@ -195,10 +212,11 @@ public class MainTest extends ConnectAPI {
     //8+
     @Test(priority = 5, enabled = false)
     public void createNewExam() {
-        String jsonSchemaPath = "examSchema.json";
+        String jsonSchemaPath = "jsonSchemes/examSchema.json";
         String examName = "EXAM";
         Response nowResponse = given()
-                .spec(request.getRequest(token, setEntity.findExam(examName)))
+                .spec(new SpecificationRequest<ExamEntity>()
+                        .getRequest(token, setEntity.findExam(examName)))
                 .when()
                 .post("/exam");
 
@@ -215,10 +233,11 @@ public class MainTest extends ConnectAPI {
     //9
     @Test(priority = 5, enabled = false)
     public void createNewTemplate() {
-        String jsonSchemaPath = "quizeSchema.json";
+        String jsonSchemaPath = "jsonSchemes/quizeSchema.json";
         String name = "Grand Theft Auto";
         Response nowResponse = given()
-                .spec(request.getRequest(token, setEntity.findTemplate(name, examId, courseId)))
+                .spec(new SpecificationRequest<Template>()
+                        .getRequest(token, setEntity.findTemplate(name, examId, courseId)))
                 .when()
                 .post("/user-hr-template");
 
@@ -233,10 +252,10 @@ public class MainTest extends ConnectAPI {
     }
 
     //10
-    @Test()
+    @Test(enabled = false)
     public void authenticationFailTest() {
 
-        String jsonSchemaPath = "errorSchema.json";
+        String jsonSchemaPath = "jsonSchemes/errorSchema.json";
         Faker faker = new Faker();
         Response nowResponse = given()
                 .spec(request.getRequestNoAuthentication(

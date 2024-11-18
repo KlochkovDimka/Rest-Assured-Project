@@ -41,6 +41,28 @@ public class SetEntity {
                 new VersionDetails(0, 0, 1, "1.0.0")
         );
     }
+    public UpdateQuest findUpdateQuestAddResponse(Integer questId, String response, String questName) {
+        return new UpdateQuest(
+                "", "version", questId,
+                new LTP(new DataEntity(
+                        "",
+                        "",
+                        List.of(),
+                        List.of(),
+                        "",
+                        List.of(),
+                        questName,
+                        List.of(),
+                        "",
+                        response,
+                        List.of(),
+                        List.of(),
+                        "",
+                        questId)
+                ),
+                new VersionDetails(0, 0, 1, "1.0.0")
+        );
+    }
 
     public UserAuthentication findUserAuthentication(String login, String password) {
         return new UserAuthentication(login, password);
